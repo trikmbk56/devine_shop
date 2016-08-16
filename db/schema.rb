@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20160816163908) do
     t.datetime "updated_at",                          null: false
     t.string   "name"
     t.string   "facebook_url"
-    t.integer  "role"
+    t.integer  "role",                   default: 0
     t.string   "contact"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
