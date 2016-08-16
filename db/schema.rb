@@ -10,14 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160816184016) do
+ActiveRecord::Schema.define(version: 20160816214143) do
+
+  create_table "cart_lines", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "quantity"
+    t.integer  "cart_id"
+    t.integer  "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_cart_lines_on_cart_id", using: :btree
+    t.index ["product_id"], name: "index_cart_lines_on_product_id", using: :btree
+  end
 
   create_table "carts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.float    "price",      limit: 24
-    t.integer  "status",                default: 0
+    t.integer  "status",     default: 0
     t.integer  "user_id"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.index ["user_id"], name: "index_carts_on_user_id", using: :btree
   end
 
@@ -25,10 +34,8 @@ ActiveRecord::Schema.define(version: 20160816184016) do
     t.string   "name"
     t.float    "price",      limit: 24
     t.integer  "amount"
-    t.integer  "cart_id"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
-    t.index ["cart_id"], name: "index_products_on_cart_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

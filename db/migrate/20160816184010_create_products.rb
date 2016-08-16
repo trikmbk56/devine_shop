@@ -4,7 +4,6 @@ class CreateProducts < ActiveRecord::Migration[5.0]
       t.string :name
       t.float :price
       t.integer :amount
-      t.references :cart
       t.timestamps null: false
     end
   end
